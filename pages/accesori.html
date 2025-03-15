@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesori Apple</title>
+    <link rel="icon" href="../image/icon.png" type="image/x-icon">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+        }
+        
+        body {
+            background-color: rgb(0, 0, 0); 
+            color: white; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        
+        .header {
+            width: 100%; 
+            max-width: 1200px; 
+            display: flex; 
+            justify-content: space-between;
+            align-items: center; 
+            padding: 10px 20px; 
+            background-color: rgba(18, 18, 18, 0.6); 
+            position: fixed; 
+            top: 9px; 
+            left: 50%;
+            transform: translateX(-50%); 
+            z-index: 1000;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .header img:hover {
+            transform: scale(1.1);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .header nav {  
+            display: flex;
+            gap: 15px; 
+        }
+        
+        .header nav a button {
+            background-color: #006eff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .header nav a button:hover {
+            background-color: #0342b8;
+        }
+        .navbar button {
+            width: 100%;
+            height: 40px;
+            background: rgb(4, 0, 255);
+            box-shadow: 0 0 10px rgb(0, 81, 255);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+        }
+        .icon-menu {
+            display: none;
+            cursor: pointer;
+            width: 25px;
+            height: 20px;
+            position: relative;
+        }
+        .bar {
+            position: absolute;
+            width: 100%;
+            height: 2.5px;
+            background-color: #4173fc;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .bar--1 {
+            top: 0;
+        }
+        
+        .bar--2 {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .bar--3 {
+            bottom: 0;
+        }
+        
+        .check-icon:checked + .icon-menu .bar--1 {
+            top: 50%;
+            transform: rotate(45deg) translateY(-50%);
+        }
+        
+        .check-icon:checked + .icon-menu .bar--2 {
+            opacity: 0;
+        }
+        
+        .check-icon:checked + .icon-menu .bar--3 {
+            bottom: 50%;
+            transform: rotate(-45deg) translateY(50%);
+        }
+        #navbar {
+            display: flex;
+            gap: 15px;
+        }
+        @media (max-width: 768px) {
+            .icon-menu {
+                display: block;
+            }
+            .header {
+                flex-direction: row; /* Логотип, название и бургер-меню в одну строку */
+                justify-content: space-between; /* Распределяем элементы по ширине */
+                align-items: center; /* Выравниваем элементы по центру */
+                padding: 10px; /* Уменьшаем отступы */
+            }
+        
+            .header img {
+                width: 40px; /* Уменьшаем размер логотипа */
+            }
+        
+            .header h1 {
+                font-size: 20px; /* Уменьшаем размер заголовка */
+                margin-left: 10px; /* Добавляем отступ между логотипом и названием */
+                white-space: nowrap; /* Запрещаем перенос текста */
+            }
+        
+            .icon-menu {
+                display: block; /* Показываем бургер-меню */
+            }
+            
+        
+            #navbar {
+                display: none; /* Скрываем навигацию по умолчанию */
+                flex-direction: column; /* Стекаем кнопки вертикально */
+                gap: 10px; /* Уменьшаем расстояние между кнопками */
+                width: 100%; /* Занимаем всю доступную ширину */
+                position: absolute; /* Размещаем меню под шапкой */
+                top: 70px; /* Положение под шапкой */
+                left: 0;
+                background-color: rgba(18, 18, 18, 0.9); /* Фон меню */
+                padding: 10px; /* Отступы внутри меню */
+                border-radius: 10px; /* Скругление углов */
+                opacity: 0; /* Начальная прозрачность */
+                visibility: hidden; /* Скрываем меню */
+                transform: translateY(-10px); /* Небольшое смещение вверх */
+                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Плавная анимация */
+            }
+        
+            #navbar.active {
+                display: flex; /* Показываем навигацию при активации */
+                opacity: 1; /* Делаем меню видимым */
+                visibility: visible; /* Отображаем меню */
+                transform: translateY(0); /* Возвращаем на место */
+            }
+        
+            .header nav a button {
+                width: 100%; /* Кнопки занимают всю ширину */
+                padding: 10px; /* Уменьшаем внутренние отступы */
+                font-size: 14px; /* Уменьшаем размер текста */
+            }
+        
+        }
+        .main-content {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-top: 100px;
+        }
+        
+        .product {
+            background: #121212;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(38, 0, 255, 0.377);
+            transition: transform 0.3s;
+        }
+        
+        .product:hover {
+            transform: scale(1.05);
+        }
+        
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .product figcaption {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        .product a button {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .wrapper {
+            width: 400px;
+            height: 500px;
+            background: #000;
+            box-shadow: 0 0 50px #0ef;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 150px;
+        }
+        .product button {
+            width: 100%;
+            height: 40px;
+            background: rgb(0, 102, 255);
+            box-shadow: 0 0 10px rgb(0, 81, 255);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+        }
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr; /* Одна колонка для карточек */
+                gap: auto; /* Уменьшаем расстояние между карточками */
+                padding: auto; /* Уменьшаем отступы */
+            }
+        
+            .product {
+                padding: 10px; /* Уменьшаем внутренние отступы */
+                border-radius: 8px; /* Уменьшаем скругление углов */
+            }
+        
+            .product img {
+                max-width: 50%; /* Ограничиваем ширину изображения */
+                height: auto; /* Сохраняем пропорции */
+            }
+        
+            .product figcaption {
+                font-size: auto; /* Уменьшаем размер текста */
+                margin-top: 8px; /* Уменьшаем отступ */
+            }
+        
+            .product a button {
+                font-size: 14px; /* Уменьшаем размер текста кнопки */
+                padding: 8px; /* Уменьшаем внутренние отступы */
+            }
+        }
+        </style>
+
+<body>
+    <div class="header">
+        <a href="../index.html"><img src="../image/icon.png" alt="Apple Logo"></a>
+        <h1>Accesori Apple</h1>
+        <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
+        <label class="icon-menu" for="check-icon">
+            <div class="bar bar--1"></div>
+            <div class="bar bar--2"></div>
+            <div class="bar bar--3"></div>
+        </label>
+        <nav id="navbar">
+            <a href="../index.html"><button>Home</button></a>
+            <a href="../pages/login.html"><button>Login</button></a>
+            <a href="../pages/register.html"><button>Register</button></a>
+            <a href="../pages/contacte.html"><button>Contacte</button></a>
+        </nav>
+    </div>
+
+    <div class="product-container">
+        <div class="product">
+            <figure>
+                <img src="../image/accesori/cusa.png" alt="Huse pentru smartphone-uri de la Apple">
+                <figcaption>Huse pentru iPhone</figcaption>
+                <a href="https://darwin.md/accesorii/huse/pentru-smartphone-uri/apple" target="_blank">
+                    <button>Cumpara</button>
+                </a>
+            </figure>
+        </div>
+
+        <div class="product">
+            <figure>
+                <img src="../image/accesori/tablet.png" alt="Huse pentru tablete">
+                <figcaption>Huse pentru tablete</figcaption>
+                <a href="https://darwin.md/accesorii/huse/pentru-tablete/apple" target="_blank">
+                    <button>Cumpara</button>
+                </a>
+            </figure>
+        </div>
+
+        <div class="product">
+            <figure>
+                <img src="../image/accesori/incarcatoare.png" alt="iPhone">
+                <figcaption>Încărcătoare</figcaption>
+                <a href="https://darwin.md/accesorii/incarcatoare/apple" target="_blank">
+                    <button>Cumpara</button>
+                </a>
+            </figure>
+        </div>
+
+        <div class="product">
+            <figure>
+                <img src="../image/accesori/cablu.png" alt="Cablu">
+                <figcaption>Cabluri de la Apple</figcaption>
+                <a href="https://darwin.md/accesorii/cabluri/apple" target="_blank">
+                    <button>Cumpara</button>
+                </a>
+            </figure>
+        </div>
+
+        <div class="product">
+            <figure>
+                <img src="../image/accesori/curele.png" alt="Curele">
+                <figcaption>Curele</figcaption>
+                <a href="https://darwin.md/accesorii/curele/curele-pentru-apple-watch" target="_blank">
+                    <button>Cumpara</button>
+                </a>
+            </figure>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkIcon = document.getElementById('check-icon');
+            const navbar = document.getElementById('navbar');
+            checkIcon.addEventListener('change', () => {
+                navbar.classList.toggle('active'); // Переключаем класс active
+            });
+        });
+    </script>
+</body>
+
+</html>
