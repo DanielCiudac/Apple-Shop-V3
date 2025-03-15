@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacte</title>
+    <link rel="icon" href="../image/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 19px 20px;
+            background-color: rgba(18, 18, 18, 0.6);
+            position: fixed;
+            top: 9px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header img {
+            width: 50px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .header img:hover {
+            transform: scale(1.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header nav a button {
+            background-color: #00e1ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .header nav a button:hover {
+            background-color: #03a3b8;
+        }
+
+        .navbar button {
+            width: 100%;
+            height: 40px;
+            background: #0ef;
+            box-shadow: 0 0 10px #0ef;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+        }
+
+        .icon-menu {
+            display: none;
+            cursor: pointer;
+            width: 25px;
+            height: 20px;
+            position: relative;
+        }
+
+        .bar {
+            position: absolute;
+            width: 100%;
+            height: 2.5px;
+            background-color: #41c7fc;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .bar--1 {
+            top: 0;
+        }
+
+        .bar--2 {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bar--3 {
+            bottom: 0;
+        }
+
+        .check-icon:checked + .icon-menu .bar--1 {
+            top: 50%;
+            transform: rotate(45deg) translateY(-50%);
+        }
+
+        .check-icon:checked + .icon-menu .bar--2 {
+            opacity: 0;
+        }
+
+        .check-icon:checked + .icon-menu .bar--3 {
+            bottom: 50%;
+            transform: rotate(-45deg) translateY(50%);
+        }
+
+        #navbar {
+            display: flex;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .icon-menu {
+                display: block;
+            }
+
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .header img {
+                width: 40px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+                margin-left: 10px;
+                white-space: nowrap;
+            }
+
+            .icon-menu {
+                display: block;
+            }
+
+            #navbar {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: rgba(18, 18, 18, 0.9);
+                padding: 10px;
+                border-radius: 10px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            }
+
+            #navbar.active {
+                display: flex;
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .header nav a button {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 150px;
+        }
+
+        .home-content {
+            max-width: 800px; 
+            width: 100%;
+            text-align: center; 
+            padding: 0 20px;
+        }
+
+        .home-content h1 {
+            font-size: 4rem; 
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .home-content h3 {
+            font-size: 2rem; 
+            margin: 1rem 0;
+        }
+
+        .home-content p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .home-content h1 {
+                font-size: 2.5rem; 
+            }
+
+            .home-content h3 {
+                font-size: 1.5rem; 
+            }
+
+            .home-content p {
+                font-size: 1rem; 
+            }
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center; 
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            text-decoration: none;
+            transition: 0.3s;
+            background-size: 60%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .youtube {
+            background-color: #ff0000;
+            background-image: url('../image/contacte/youtube.png');
+            color: white;
+        }
+
+        .facebook {
+            background-color: #1877f2;
+            background-image: url('../image/contacte/facebook.png');
+        }
+
+        .instagram {
+            background-color: #ff00ff;
+            background-image: url('../image/contacte/iconinstagram.png');
+            color: white;
+        }
+
+        .github {
+            background-color: #fff;
+            background-image: url('../image/contacte/github-mark.png');
+            color: #fff;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-info i {
+            font-size: 1.5rem;
+            color: #00e1ff;
+        }
+        .map-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .map-container h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #00e1ff;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #00e1ff;
+            background-color: rgba(18, 18, 18, 0.6);
+            width: 100%;
+            border-top: 1px solid rgba(0, 225, 255, 0.3);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+
+        .home-content h1 span {
+            background: linear-gradient(90deg, #00e1ff, #03a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 225, 255, 0.61); 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="../index.html"><img src="../image/icon.png" alt="Apple Logo"></a>
+        <h1>Contacte</h1>
+        <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
+        <label class="icon-menu" for="check-icon">
+            <div class="bar bar--1"></div>
+            <div class="bar bar--2"></div>
+            <div class="bar bar--3"></div>
+        </label>
+        <nav id="navbar">
+            <a href="../index.html"><button>Home</button></a>
+            <a href="../pages/login.html"><button>Login</button></a>
+            <a href="../pages/register.html"><button>Register</button></a>
+            <a href="../pages/contacte.html"><button>Contacte</button></a>
+        </nav>
+    </div>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Bună, Mă numesс <span>Daniel</span></h1>
+            <h3>Profesia mea este <span>Web Developer</span></h3>
+            <p>Sunt elev la IP Gimnaziu Ecaterina Malcoci. Sunt pasionat de tehnologie și dezvoltare web, iar visul meu este să devin Web Developer. Îmi place să experimentez cu HTML, CSS și JavaScript, iar fiecare proiect îmi aduce noi provocări și oportunități de învățare. Mulțumesc învățătoarei Tatiana Ganenco, care ne-a oferit motivația și inspirația de a urma drumul dezvoltării web</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/" target="_blank" class="social-btn youtube"></a>
+                <a href="https://www.facebook.com/daniel.ciudac" target="_blank" class="social-btn facebook"></a>
+                <a href="https://www.instagram.com/daniel.ciudac" target="_blank" class="social-btn instagram"></a>
+                <a href="https://github.com/DanielCiudac/Apple-Shop-V3" target="_blank" class="social-btn github"></a>
+            </div>
+            <div class="contact-info">
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <span>ciudacdaniel@gmail.com</span>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <span>+37367157113</span>
+                </div>
+            </div>
+            <div class="map-container">
+                <h4>Locația școlii</h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2748.998206424456!2d29.984070575902454!3d46.44873257110715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c865004e28c0d3%3A0x1d2d3603613863ca!2sI.P.%20Gimnaziul%20%22Ecaterina%20Malcoci%22%20s.%20Crocmaz!5e0!3m2!1sru!2sua!4v1742041859171!5m2!1sru!2sua" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Daniel Ciudac</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkIcon = document.getElementById('check-icon');
+            const navbar = document.getElementById('navbar');
+            checkIcon.addEventListener('change', () => {
+                navbar.classList.toggle('active'); 
+            });
+        });
+    </script>
+</body>
+
+</html>
